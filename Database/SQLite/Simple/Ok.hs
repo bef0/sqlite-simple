@@ -1,5 +1,6 @@
 {-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE DeriveFunctor      #-}
+{-# LANGUAGE CPP #-}
 
 ------------------------------------------------------------------------------
 -- |
@@ -71,9 +72,9 @@ instance Monad Ok where
 
     Errors es >>= _ = Errors es
     Ok a      >>= f = f a
-
+#if 0
     fail str = Errors [SomeException (ErrorCall str)]
-
+#endif
 -- | a way to reify a list of exceptions into a single exception
 
 newtype ManyErrors = ManyErrors [SomeException]
